@@ -19,6 +19,13 @@ check: format type
 test:
 	uv run pytest
 
+.PHONY: test-latest
+test-latest:
+	env -u UV_FROZEN uv run \
+		--no-cache --isolated --no-project \
+		--with . --with pytest --with absl-py \
+		--with mujoco-menagerie==2026.9.4 --upgrade pytest
+
 .PHONY: test-all
 test-all: check test
 

@@ -66,4 +66,9 @@ Common development commands:
    make doc       # Build documentation
    make doc-live  # Build docs with live reload
 
+The normal test command uses the versions in ``uv.lock``. Run
+``make test-latest`` to test the current code with the latest compatible runtime
+dependencies. This command uses an isolated environment and does not update
+``uv.lock`` or the project environment.
+
 See `CONTRIBUTING.md <https://github.com/kevinzakka/mink/blob/main/CONTRIBUTING.md>`_ for guidelines.
