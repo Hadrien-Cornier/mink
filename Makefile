@@ -41,7 +41,8 @@ doc-live:
 build:
 	rm -rf dist/
 	uv build
-	uv run --no-cache --isolated --no-project --with pytest --with robot_descriptions --with dist/*.whl pytest tests/
-	uv run --no-cache --isolated --no-project --with pytest --with robot_descriptions --with dist/*.tar.gz pytest tests/
+	uv export --frozen --no-dev --no-emit-project --no-hashes --no-header --no-annotate --output-file dist/runtime-requirements.txt
+	uv run --no-cache --isolated --no-project --with-requirements dist/runtime-requirements.txt --with pytest --with absl-py --with mujoco-menagerie==2026.9.4 --with dist/*.whl pytest tests/
+	uv run --no-cache --isolated --no-project --with-requirements dist/runtime-requirements.txt --with pytest --with absl-py --with mujoco-menagerie==2026.9.4 --with dist/*.tar.gz pytest tests/
 	@ls -lh dist/*.whl | awk '{print "Wheel size: " $$5}'
 	@echo "Build and test successful"

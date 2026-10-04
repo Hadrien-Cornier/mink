@@ -2,10 +2,10 @@
 
 from typing import cast
 
+import mujoco_menagerie as mm
 import numpy as np
 from absl.testing import absltest
 from numpy.linalg import norm
-from robot_descriptions.loaders.mujoco import load_robot_description
 
 import mink
 
@@ -15,7 +15,7 @@ class TestSolveIK(absltest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.model = load_robot_description("ur5e_mj_description")
+        cls.model = mm.load("universal_robots_ur5e", "ur5e")
 
     def setUp(self):
         self.configuration = mink.Configuration(self.model)
